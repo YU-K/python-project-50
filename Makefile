@@ -2,7 +2,7 @@ install:
 	poetry install
 
 run:
-	poetry run gendiff -h
+	poetry run gendiff temp/file1.json temp/file2.json -f json
 
 build:
 	poetry build
