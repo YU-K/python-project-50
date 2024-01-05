@@ -1,8 +1,8 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/YU-K/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/YU-K/python-project-50/actions)
 
-### Gendiff app CI
-[![Actions Status]([https://github.com/YU-K/python-project-50/actions/workflows/hexlet-check.yml/badge.svg](https://github.com/YU-K/python-project-50/actions)
+### gendiff app CI
+[![Actions Status](https://github.com/YU-K/python-project-50/actions/workflows/python-app.yml/badge.svg)](https://github.com/YU-K/python-project-50/actions)
 
 
 
