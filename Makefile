@@ -2,11 +2,16 @@ install:
 	poetry install
 
 run:
-	poetry run gendiff temp/file1.json temp/file2.json -f json
+	poetry run gendiff tests/fixtures/file1.json tests/fixtures/file2.json -f json
 
 build:
 	poetry build
 
+test:
+	poetry run pytest
+
+lint:
+	poetry run flake8 gendiff
 
 publish:
 	poetry publish --dry-run
