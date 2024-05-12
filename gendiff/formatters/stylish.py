@@ -24,7 +24,7 @@ def stringify(node, depth):
     return str(node)
 
 
-def stylish(diff):
+def stylish(ast):
     def walk(tree, depth):
         nodes = []
         for node in tree:
@@ -52,7 +52,7 @@ def stylish(diff):
                     nodes.append(f"{walk(node['children'], depth + 2)}")
                     nodes.append(f"    {do_intend(depth)}}}")
                 case _:
-                    nodes.append("")
+                    raise Exception(f"Unknown type {type_}!")
         return '\n'.join(nodes)
 
-    return '{\n' + walk(diff, 0) + '\n}'
+    return '{\n' + walk(ast, 0) + '\n}'
