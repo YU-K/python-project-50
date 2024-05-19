@@ -2,9 +2,7 @@ install:
 	poetry install
 
 run:
-	poetry run gendiff  tests/fixtures/file1_r.json tests/fixtures/file2_r.json
-# 	poetry run gendiff tests/fixtures/file1.yml tests/fixtures/file2.yml
-# 	poetry run gendiff tests/fixtures/file1.json tests/fixtures/file2.json
+	poetry run gendiff  -f json tests/fixtures/file1_r.yml tests/fixtures/file2_r.yml
 
 build:
 	poetry build
@@ -23,4 +21,10 @@ publish:
 
 package-install:
 	python3 -m pip install --user dist/*.whl
+
+package-reinstall:
+	python3 -m pip install --user dist/*.whl --force-reinstall
+
+
+
 
