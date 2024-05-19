@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 import os
-import json
-import yaml
 from gendiff.generate_diff import generate_diff
-from gendiff.formatters.plain import plain
+from gendiff.generate_diff import read_file
 import pytest
 
 
@@ -12,28 +10,25 @@ def get_fixture_path(filename: str) -> str:
     return os.path.join(current_dir, "tests/fixtures", filename)
 
 
-data1 = json.load(open(get_fixture_path("file1.json")))
-data2 = json.load(open(get_fixture_path("file2.json")))
-data1_r = json.load(open(get_fixture_path("file1_r.json")))
-data2_r = json.load(open(get_fixture_path("file2_r.json")))
-data1_yml = yaml.load(open(get_fixture_path("file1.yml")), Loader=yaml.Loader)
-data2_yml = yaml.load(open(get_fixture_path("file2.yml")), Loader=yaml.Loader)
-expected = open(get_fixture_path("output.txt")).read()
-expected_recur = open(get_fixture_path("output_r.txt")).read()
-expected_plain = open(get_fixture_path("output_plain.txt")).read()
+file_path_json1 = get_fixture_path("file1_r.json")
+file_path_json2 = get_fixture_path("file2_r.json")
+file_path_yml1 = get_fixture_path("file1_r.yml")
+file_path_yml2 = get_fixture_path("file2_r.yml")
+json_output = read_file(get_fixture_path("json.txt"))
+stylish_output = read_file(get_fixture_path("stylish.txt"))
+plain_output = read_file(get_fixture_path("plain.txt"))
 
-# TODO: добавить возможность подставлять различные файлы в pytest
-# @pytest.mark.parametrize("file1, file2, expected", [(first_file_path, second_file_path, result)])
 
 testdata = [
-            # (data1, data2, expected),
-            # (data1_yml, data2_yml, expected),
-            # (data1_r, data2_r, expected_recur),
-            (data1_r, data2_r, expected_plain),
+            (file_path_json1, file_path_json2, 'stylish', stylish_output),
+            (file_path_yml1, file_path_yml2, 'stylish', stylish_output),
+            (file_path_json1, file_path_json2, 'json', json_output),
+            (file_path_yml1, file_path_yml2, 'json',  json_output),
+            (file_path_yml1, file_path_yml2, 'plain', plain_output),
 ]
 
 
-@pytest.mark.parametrize("file1, file2, expected", testdata)
-def test_generate_diff(file1, file2, expected):
-    diff = generate_diff(file1, file2, plain)
+@pytest.mark.parametrize("file1, file2, format_name, expected", testdata)
+def test_generate_diff(file1, file2, format_name, expected):
+    diff = generate_diff(file1, file2, format_name)
     assert diff == expected.strip()
