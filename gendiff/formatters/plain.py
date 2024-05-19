@@ -31,7 +31,8 @@ def plain(ast):
                 case "removed":
                     nodes.append(f"Property '{new_ancestry}' was removed")
                 case "nested":
-                    nodes.append(f"{walk(node['children'], new_ancestry+'.')}")
+                    nodes.append(
+                        f"{walk(node['children'], new_ancestry + '.')}")
                 case "same":
                     nodes.append('')
                 case _:
