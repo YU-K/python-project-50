@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
-from gendiff.generate_diff import generate_diff
-from gendiff.generate_diff import read_file
+from gendiff import generate_diff
+from gendiff.gendiff import read_file
 import pytest
 
 
