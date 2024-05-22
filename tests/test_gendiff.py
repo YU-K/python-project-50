@@ -19,13 +19,11 @@ stylish_output = read_file(get_fixture_path("stylish.txt"))
 plain_output = read_file(get_fixture_path("plain.txt"))
 
 
-testdata = [
-            (file_path_json1, file_path_json2, 'stylish', stylish_output),
+testdata = [(file_path_json1, file_path_json2, 'stylish', stylish_output),
             (file_path_yml1, file_path_yml2, 'stylish', stylish_output),
             (file_path_json1, file_path_json2, 'json', json_output),
             (file_path_yml1, file_path_yml2, 'json',  json_output),
-            (file_path_yml1, file_path_yml2, 'plain', plain_output),
-]
+            (file_path_yml1, file_path_yml2, 'plain', plain_output),]
 
 
 @pytest.mark.parametrize("file1, file2, format_name, expected", testdata)
