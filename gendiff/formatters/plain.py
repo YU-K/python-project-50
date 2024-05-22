@@ -2,6 +2,9 @@ def stringify(node):
     if isinstance(node, bool):
         return str(node).lower()
 
+    if isinstance(node, int):
+        return node
+
     if isinstance(node, dict):
         return '[complex value]'
 
